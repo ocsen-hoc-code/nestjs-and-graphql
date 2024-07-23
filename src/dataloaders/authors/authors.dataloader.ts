@@ -1,14 +1,15 @@
 import * as DataLoader from 'dataloader';
-import { Author } from '../../models/authors/author.entity';
-import { getConnection, Repository } from 'typeorm';
+import { Author } from 'src/models/authors/author.entity';
+import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AuthorLoader { constructor(
+export class AuthorLoader {
+  constructor(
     @InjectRepository(Author)
     private readonly authorsRepository: Repository<Author>,
-  ) {}
+  ) { }
 
   public createAuthorsLoader() {
     return new DataLoader<number, Author>(async (ids: number[]) => {

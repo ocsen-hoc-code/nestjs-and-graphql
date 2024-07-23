@@ -9,9 +9,19 @@ export class AuthorsService {
   constructor(
     @InjectRepository(Author)
     private authorsRepository: Repository<Author>,
-  ) {}
+  ) { }
 
   findAll(): Promise<Author[]> {
     return this.authorsRepository.find();
+  }
+
+  findById(id: number): Promise<Author> {
+    return this.authorsRepository.findOneBy({ id });
+  }
+  async findByIds(authorIds: number[]): Promise<Author[]> {
+    if (authorIds.length === 0) {
+      return [];
+    }
+    return this.authorsRepository.findByIds(authorIds);
   }
 }

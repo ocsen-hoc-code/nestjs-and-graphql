@@ -11,7 +11,7 @@ export class AuthorsResolver {
   constructor(
     private readonly authorsService: AuthorsService,
     private readonly booksService: BooksService,
-    // private readonly booksLoader: BooksLoader,
+    private readonly booksLoader: BooksLoader,
   ) {}
 
   @Query(() => [Author])
@@ -21,8 +21,8 @@ export class AuthorsResolver {
 
   @ResolveField(() => [Book])
   async books(@Parent() author: Author) {
-    return this.booksService.findByIds(author.bookIds || []);
-    // return this.booksLoader.createBooksLoader().loadMany(author.bookIds || []);
+    // return this.booksService.findByIds(author.bookIds || []);
+    return this.booksLoader.createBooksLoader().loadMany(author.bookIds || []);
   }
 
   @ResolveField(() => [Int])
