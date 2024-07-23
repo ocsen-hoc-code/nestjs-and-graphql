@@ -3,10 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { BooksModule } from './modules/books/books.module';
-import { AuthorsModule } from './modules/authors/authors.module';
-import { Book } from './models/books/book.entity';
-import { Author } from './models/authors/author.entity';
+import { BooksModule } from 'src/modules/books/books.module';
+import { AuthorsModule } from 'src/modules/authors/authors.module';
+import { Book } from 'src/models/books/book.entity';
+import { Author } from 'src/models/authors/author.entity';
 
 @Module({
   imports: [

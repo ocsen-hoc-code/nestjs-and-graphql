@@ -1,17 +1,14 @@
 import { Resolver, Query, ResolveField, Parent } from '@nestjs/graphql';
-import { Inject } from '@nestjs/common';
-import { Book } from '../../models/books/book.entity';
-import { BooksService } from '../../services/books/book.service';
-import { Author } from '../..//models/authors/author.entity';
-import { BooksLoader } from '../../dataloaders/books/books.dataloader';
-import { AuthorLoader } from '../../dataloaders/authors/authors.dataloader';
-import DataLoader from 'dataloader';
+import { Book } from 'src/models/books/book.entity';
+import { BooksService } from 'src/services/books/book.service';
+import { Author } from 'src//models/authors/author.entity';
+import { BooksLoader } from 'src/dataloaders/books/books.dataloader';
 
 @Resolver(() => Book)
 export class BooksResolver {
   constructor(
     private readonly booksService: BooksService,
-    private readonly booksLoader: BooksLoader,
+    // private readonly booksLoader: BooksLoader,
   ) {}
 
   @Query(() => [Book])
@@ -21,6 +18,7 @@ export class BooksResolver {
 
   @ResolveField(() => Author)
   async author(@Parent() book: Book) {
-    return this.booksLoader.createBooksLoader().load(book.authorId);
+    return this.booksService.findByAuthorId(book.authorId);
+    // return this.booksLoader.createBooksLoader().load(book.authorId);
   }
 }

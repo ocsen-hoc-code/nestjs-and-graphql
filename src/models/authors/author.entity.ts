@@ -19,5 +19,5 @@ export class Author {
 
   @Field(() => [Int])
   @Column('int', { array: true })
-  bookIds: number[];fds
+  bookIds: number[];
 }

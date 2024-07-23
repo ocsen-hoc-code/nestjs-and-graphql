@@ -1,6 +1,6 @@
 import * as DataLoader from 'dataloader';
 import { Book } from '../../models/books/book.entity';
-import { getConnection, Repository } from 'typeorm';
+import {  Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class BooksLoader {
   constructor(
     @InjectRepository(Book)
-    private readonly booksRepository: Repository<Book>,
+    private booksRepository: Repository<Book>,
   ) {}
 
   public createBooksLoader() {

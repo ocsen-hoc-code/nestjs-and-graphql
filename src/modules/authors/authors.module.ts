@@ -1,17 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthorsResolver } from '../../resolvers/authors/authors.resolver';
-import { AuthorsService } from '../../services/authors/authors.service';
-import { Author } from '../../models/authors/author.entity';
-import { Book } from '../../models/books/book.entity';
-import { BooksResolver } from '../../resolvers/books/books.resolver';
-import { BooksService } from '../../services/books/book.service';
-import { BooksLoader } from 'src/dataloaders/books/books.dataloader';
-import { AuthorLoader } from 'src/dataloaders/authors/authors.dataloader';
+import { AuthorsResolver } from 'src/resolvers/authors/authors.resolver';
+import { AuthorsService } from 'src/services/authors/authors.service';
+import { Author } from 'src/models/authors/author.entity';
+import { BooksService } from 'src/services/books/book.service';
+import { Book } from 'src/models/books/book.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Author])],
-  providers: [AuthorLoader, AuthorsService, AuthorsResolver],
-  exports: [AuthorLoader],
+  imports: [TypeOrmModule.forFeature([Author, Book])],
+  providers: [BooksService, AuthorsService, AuthorsResolver],
+  exports: [],
 })
-export class AuthorsModule {}
+export class AuthorsModule { }
